@@ -1,0 +1,28 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "gunawanDev",
+  "url": "https://gunawandev.com",
+  "email": "hello@gunawandev.com",
+  "telephone": "+1-234-567-890",
+  "jobTitle": "Full-Stack Software Engineer",
+  "description": "Full-stack developer specializing in React, TypeScript, and modern web technologies",
+  "image": "https://gunawandev.com/og-image.jpg",
+  "sameAs": [
+    "https://github.com/gunawandev",
+    "https://linkedin.com/in/gunawandev",
+    "https://twitter.com/gunawandev"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "",
+    "addressLocality": "San Francisco",
+    "addressRegion": "CA",
+    "postalCode": "",
+    "addressCountry": "US"
+  },
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Self-employed"
+  }
+}
