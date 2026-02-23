@@ -1,80 +1,64 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
-import { ScrollProgress } from '@/components/scroll-progress'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import { ThemeProvider } from 'next-themes'
+import { LangProvider } from '@/components/i18n'
+import { Navbar } from '@/components/navbar'
+import { Footer } from '@/components/footer'
 import { BackToTop } from '@/components/back-to-top'
-
-const geist = Geist({ 
-  subsets: ["latin"],
-  variable: '--font-geist'
-})
-const geistMono = Geist_Mono({ 
-  subsets: ["latin"],
-  variable: '--font-geist-mono'
-})
+import { ScrollProgress } from '@/components/scroll-progress'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'gunawanDev - Software Engineer & Developer',
-  description: 'Portfolio of gunawanDev showcasing projects, skills, and experiences in full-stack development, web design, and software engineering.',
-  keywords: ['developer', 'portfolio', 'full-stack', 'web development', 'software engineer'],
-  authors: [{ name: 'gunawanDev' }],
-  creator: 'gunawanDev',
-  metadataBase: new URL('https://gunawandev.com'),
+  metadataBase: new URL('https://danagunawan-portofolio.vercel.app'),
+  title: {
+    default: 'gunawanDev — Full-Stack AI Web Developer',
+    template: '%s | gunawanDev',
+  },
+  description:
+    'Portfolio of I Dewa Kadek Dana Gunawan — Full-Stack AI Web Developer from Bali, Indonesia. Building scalable, fast, and optimized web apps with React, Next.js, Laravel, and AI tools.',
+  keywords: [
+    'Full-Stack Developer', 'AI Web Developer', 'Next.js', 'React', 'Laravel',
+    'TypeScript', 'Bali Developer', 'Indonesia Developer', 'gunawanDev',
+  ],
+  authors: [{ name: 'I Dewa Kadek Dana Gunawan', url: 'https://danagunawan-portofolio.vercel.app' }],
+  creator: 'I Dewa Kadek Dana Gunawan',
   openGraph: {
-    title: 'gunawanDev - Software Engineer',
-    description: 'Full-stack developer showcasing projects and expertise',
-    url: 'https://gunawandev.com',
     type: 'website',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'gunawanDev Portfolio',
-      },
-    ],
+    locale: 'en_US',
+    url: 'https://danagunawan-portofolio.vercel.app',
+    title: 'gunawanDev — Full-Stack AI Web Developer',
+    description: 'Portfolio of I Dewa Kadek Dana Gunawan — Full-Stack AI Web Developer from Bali, Indonesia.',
+    siteName: 'gunawanDev',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'gunawanDev - Software Engineer',
-    description: 'Full-stack developer portfolio',
-    images: ['/og-image.png'],
+    title: 'gunawanDev — Full-Stack AI Web Developer',
+    description: 'Portfolio of I Dewa Kadek Dana Gunawan — Full-Stack AI Web Developer from Bali, Indonesia.',
+    creator: '@gunawandev',
   },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-icon.png',
-  },
+  robots: { index: true, follow: true },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${geist.variable} ${geistMono.variable}`}>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.documentElement.classList.add('dark')
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
-      <body className="font-sans antialiased">
-        <ScrollProgress />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <BackToTop />
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+    >
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <LangProvider>
+            <ScrollProgress />
+            <Navbar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+            <BackToTop />
+          </LangProvider>
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   )
