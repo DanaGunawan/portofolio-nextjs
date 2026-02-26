@@ -169,12 +169,7 @@ export function Footer() {
           </p>
 
           <div className="flex items-center gap-1.5 text-xs text-[color:var(--muted-foreground)]">
-            <span>Built with</span>
-            <span className="text-red-500">❤️</span>
-            <span>using</span>
-            <span className="font-semibold text-violet-600 dark:text-violet-400">Next.js</span>
-            <span>&</span>
-            <span className="font-semibold text-violet-600 dark:text-violet-400">Tailwind</span>
+
           </div>
         </div>
       </div>

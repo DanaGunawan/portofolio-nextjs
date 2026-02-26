@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, Github, Linkedin, Mail, ExternalLink, Calendar, Clock, Lightbulb, Briefcase, GraduationCap, MapPin, Code2, Server, Wrench, Award, Send, BookOpen } from 'lucide-react'
+import { ArrowRight, Github, Linkedin, Mail, ExternalLink, Calendar, Clock, Lightbulb, Briefcase, GraduationCap, MapPin, Code2, Server, Wrench, Award, Send, Download, UtensilsCrossed } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -13,29 +13,29 @@ const projects = [
   {
     slug: 'sigkos-panjer',
     title: 'SIGKOS PANJER',
-    descEn: 'Information system for boarding house resident data management in Kelurahan Panjer with interactive Leaflet maps, reports, and statistics.',
-    descId: 'Sistem informasi pendataan penghuni kos di Kelurahan Panjer dengan peta interaktif Leaflet, laporan, dan statistik.',
-    tags: ['Laravel', 'Bootstrap', 'Leaflet', 'MySQL'],
+    descEn: 'GIS-based information system for recording and managing boarding house residents in Panjer Subdistrict. Features resident data management, reporting, statistics, PDF export, and interactive Leaflet maps to visualize locations.',
+    descId: 'Sistem informasi berbasis GIS untuk pendataan penghuni kos di Kelurahan Panjer dengan manajemen data, laporan, statistik, ekspor PDF, dan peta interaktif Leaflet.',
+    tags: ['Laravel', 'TailwindCSS', 'Bootstrap', 'Leaflet'],
     link: 'https://sigkoskelurahanpanjer.web.id/',
     image: 'https://picsum.photos/seed/sigkos/800/450',
   },
   {
-    slug: 'pomodoro-app',
-    title: 'Pomodoro App',
-    descEn: 'Pomodoro-based time management app with real-time timer, task list, and session statistics synced via Supabase.',
-    descId: 'Aplikasi manajemen waktu berbasis Pomodoro dengan timer real-time, daftar tugas, dan statistik sesi via Supabase.',
-    tags: ['Next.js', 'Tailwind', 'Supabase', 'TypeScript'],
-    link: 'https://pomodoro-boost.vercel.app/',
-    image: 'https://picsum.photos/seed/pomodoro/800/450',
+    slug: 'zonaCPNS',
+    title: 'ZONACPNS',
+    descEn: 'Online exam platform for CPNS preparation with 6 different tryout packages, automatic timer, real-time result evaluation, Supabase data storage, and Midtrans payment integration.',
+    descId: 'Platform tryout online untuk persiapan CPNS dengan 6 paket tryout, timer otomatis, evaluasi hasil real-time, penyimpanan Supabase, dan integrasi pembayaran Midtrans.',
+    tags: ['Next.js 15', 'TailwindCSS', 'Supabase', 'Midtrans'],
+    link: 'https://zonacpns.com',
+    image: 'https://picsum.photos/seed/cpns/800/450',
   },
   {
-    slug: 'tryout-cpns',
-    title: 'Tryout CPNS',
-    descEn: 'Online exam platform for CPNS preparation with question bank, auto timer, real-time results, and Midtrans payment integration.',
-    descId: 'Platform tryout online untuk persiapan ujian CPNS dengan bank soal, timer otomatis, hasil real-time, dan integrasi pembayaran Midtrans.',
-    tags: ['Next.js', 'Supabase', 'Midtrans', 'Tailwind'],
-    link: 'https://masukcpns.vercel.app/',
-    image: 'https://picsum.photos/seed/cpns/800/450',
+    slug: 'rajaprana',
+    title: 'RAJAPRANA',
+    descEn: 'Backend booking engine for spa & activity reservations. Includes management dashboard, RESTful APIs for products/availability/pricing, automated Excel/PDF sales reports, transaction email notifications, and Jokul payment integration.',
+    descId: 'Backend booking engine untuk reservasi spa dan aktivitas. Dashboard manajemen, RESTful API, laporan penjualan Excel/PDF otomatis, notifikasi email transaksi, dan integrasi Jokul payment.',
+    tags: ['Laravel', 'TailwindCSS', 'Fullcalendar', 'Jokul'],
+    link: 'https://rajaprana.com',
+    image: 'https://picsum.photos/seed/rajaprana/800/450',
   },
 ]
 
@@ -57,27 +57,46 @@ const tilEntries = [
 const skillCats = [
   { category: 'Frontend', icon: Code2, skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'JavaScript', 'HTML/CSS'] },
   { category: 'Backend', icon: Server, skills: ['PHP', 'Laravel', 'Node.js', 'SQL', 'RESTful API', 'Supabase'] },
-  { category: 'Tools & Platforms', icon: Wrench, skills: ['GitHub', 'Postman', 'Vercel', 'ChatGPT / AI Tools', 'VS Code', 'AWS (Basic)'] },
-  { category: 'Other', icon: Code2, skills: ['Debugging', 'System Optimization', 'Version Control', 'Responsive Design', 'SEO'] },
+  { category: 'Tools & Platforms', icon: Wrench, skills: ['GitHub', 'Postman', 'Vercel', 'ChatGPT', 'Claude', 'AWS (Basic)'] },
+  { category: 'Other', icon: Code2, skills: ['Debugging & Troubleshooting', 'System Optimization', 'Version Control', 'Responsive Design', 'Basic SEO'] },
 ]
 
 const certs = [
-  { title: 'Belajar Membuat Aplikasi Back-End untuk Pemula', issuer: 'Dicoding', date: 'Oct 2023', emoji: '🖥️' },
-  { title: 'Cloud Practitioner Essentials (AWS Cloud)', issuer: 'Dicoding', date: 'Nov 2023', emoji: '☁️' },
+  { title: 'Learn to Create Back-End Applications for Beginners', issuer: 'Dicoding', date: 'Oct 2023', emoji: '🖥️' },
+  { title: 'Cloud Practitioner Essentials (Learn Basic AWS Cloud)', issuer: 'Dicoding', date: 'Nov 2023', emoji: '☁️' },
+  { title: 'Front End Web Development', issuer: 'Devsnest', date: 'Jun 2025', emoji: '🎨' },
 ]
 
 const experiences = [
   {
-    title: 'WordPress Developer', company: 'PT. Digjaya Digital', period: 'Aug 2024 – Feb 2025', location: 'Bali, Indonesia',
-    descEn: 'Developed websites using WordPress with theme customization, plugin integration, and performance optimization. Delivered responsive, high-performing digital solutions.',
-    descId: 'Mengembangkan website menggunakan WordPress dengan kustomisasi tema, integrasi plugin, dan optimasi performa.',
-    highlights: ['Theme Customization', 'Plugin Integration', 'Performance Optimization', 'SEO'], icon: Briefcase,
+    title: 'Backend Developer',
+    company: 'PT. Kirana Bali Wisata',
+    period: 'Sep 2025 – Present',
+    location: 'Bali, Indonesia',
+    descEn: 'Building structured and scalable web applications using Laravel, PHP, TailwindCSS, and JavaScript. Developed the backend booking engine for Rajaprana (rajaprana.com) covering spa services and activity packages with RESTful APIs to manage products, availability, pricing, and transaction flows. Built a full-stack monolithic app for HotelDomestik (hoteldomestik.com) handling hotel room reservations, voucher systems, price calculation, and validation — all focused on data consistency and reliability.',
+    descId: 'Membangun aplikasi web terstruktur dan skalabel menggunakan Laravel, PHP, TailwindCSS, dan JavaScript. Mengembangkan backend booking engine untuk Rajaprana dan aplikasi monolitik full-stack untuk HotelDomestik.',
+    highlights: ['Laravel', 'RESTful API', 'Database Design', 'Authentication', 'PHP'],
+    icon: Briefcase,
   },
   {
-    title: 'D3 Manajemen Informatika', company: 'Politeknik Negeri Bali', period: '2022 – Present', location: 'Bali, Indonesia',
-    descEn: 'Studying Informatics Management with focus on web development, databases, and software engineering. GPA: 3.71 / 4.00.',
-    descId: 'Menempuh D3 Manajemen Informatika dengan fokus pada web development, basis data, dan rekayasa perangkat lunak. IPK: 3.71 / 4.00.',
-    highlights: ['Web Development', 'Database', 'System Analysis', 'GPA 3.71/4.00'], icon: GraduationCap,
+    title: 'WordPress Developer',
+    company: 'PT. Digjaya Digital',
+    period: 'Aug 2024 – Feb 2025',
+    location: 'Bali, Indonesia',
+    descEn: 'Contributed to the development of client websites using WordPress. Built custom, responsive layouts with Elementor, implemented custom PHP/JavaScript functionality within themes and plugins, worked with JetEngine for dynamic content structures and WooCommerce for e-commerce. Also handled performance optimization, SEO configuration, and technical troubleshooting.',
+    descId: 'Mengembangkan website klien menggunakan WordPress dengan Elementor, kustomisasi PHP/JavaScript, JetEngine, dan WooCommerce. Menangani optimasi performa, konfigurasi SEO, dan troubleshooting teknis.',
+    highlights: ['WordPress', 'Elementor', 'PHP', 'WooCommerce', 'JetEngine', 'SEO'],
+    icon: Briefcase,
+  },
+  {
+    title: 'Food & Beverage Server',
+    company: 'Six Senses Uluwatu',
+    period: 'Sep 2022 – Dec 2022',
+    location: 'Bali, Indonesia',
+    descEn: 'First professional experience after high school graduation. Assisted guests during breakfast, lunch, and dinner service, took orders, delivered food and beverages, and maintained restaurant cleanliness. Gained foundational skills in hospitality standards, team communication, and calm performance under pressure — building confidence, discipline, and professional responsibility.',
+    descId: 'Pengalaman profesional pertama setelah lulus SMA. Membantu tamu saat makan pagi, siang, dan malam, mengambil pesanan, mengantarkan makanan/minuman, dan menjaga kebersihan restoran.',
+    highlights: ['Guest Service', 'Teamwork', 'Hospitality Standards', 'Communication'],
+    icon: UtensilsCrossed,
   },
 ]
 
@@ -106,7 +125,6 @@ function Card({ children, className = '', hover = true }: { children: React.Reac
   )
 }
 
-// ─── TAG CHIP ─────────────────────────────────────────────────────────────────
 function Tag({ label }: { label: string }) {
   return (
     <span className="px-2.5 py-1 rounded-lg text-xs font-medium bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-400 border border-violet-200 dark:border-violet-500/20">
@@ -115,13 +133,12 @@ function Tag({ label }: { label: string }) {
   )
 }
 
-// ─── SECTION DIVIDER ─────────────────────────────────────────────────────────
 function Divider() {
   return <div className="h-px bg-gradient-to-r from-transparent via-violet-300/40 dark:via-violet-500/20 to-transparent my-2" />
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// HOME PAGE — All sections in one scroll
+// HOME PAGE
 // ══════════════════════════════════════════════════════════════════════════════
 
 export default function HomePage() {
@@ -148,15 +165,14 @@ export default function HomePage() {
   return (
     <>
       {/* ════════════════════════════════════════════════════════════
-          HERO
+          HERO — min-h-screen
       ════════════════════════════════════════════════════════════ */}
-      <section id="home" className="relative min-h-screen pt-20 flex items-center overflow-hidden">
+      <section id="home" className="relative min-h-screen w-full pt-20 flex items-center overflow-hidden">
         {/* BG */}
         <div className="absolute inset-0 dark:hidden" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,58,237,0.12) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(99,102,241,0.08) 0%, transparent 60%), linear-gradient(180deg,#f0ebff 0%,#faf8ff 60%,#f5f3ff 100%)' }} />
         <div className="absolute inset-0 hidden dark:block" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 20%, rgba(109,40,217,0.25) 0%, rgba(76,29,149,0.12) 40%, transparent 70%), radial-gradient(ellipse 60% 40% at 50% 100%, rgba(79,70,229,0.18) 0%, transparent 60%), #050510' }} />
         <div className="absolute inset-0 opacity-[0.025] dark:opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(124,58,237,0.8) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.8) 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
 
-        {/* Floating orbs */}
         <div className="absolute top-1/4 left-[8%] w-3 h-3 rounded-full bg-violet-500 opacity-50 dark:opacity-40 animate-bounce" style={{ animationDuration: '3s' }} />
         <div className="absolute top-1/2 right-[6%] w-2 h-2 rounded-full bg-indigo-400 opacity-40 animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }} />
         <div className="absolute bottom-1/4 left-[15%] w-2 h-2 rounded-full bg-violet-400 opacity-35 animate-bounce" style={{ animationDelay: '2s', animationDuration: '3.5s' }} />
@@ -191,6 +207,7 @@ export default function HomePage() {
                 {t.hero.desc} <span className="font-semibold text-violet-600 dark:text-violet-300">{t.hero.descHighlight}</span>
               </p>
 
+              {/* CTA Buttons — includes Download CV */}
               <div className="flex flex-col sm:flex-row gap-3 pt-1">
                 <a href="#contact"
                   className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(124,58,237,0.4)]"
@@ -201,6 +218,15 @@ export default function HomePage() {
                 <a href="#projects"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-violet-700 dark:text-violet-300 border border-violet-400/40 bg-violet-50 dark:bg-violet-500/10 hover:bg-violet-100 dark:hover:bg-violet-500/20 transition-all duration-300 hover:scale-105">
                   {t.hero.cta2}
+                </a>
+                {/* Download CV Button */}
+                <a
+                  href="/cv-dana-gunawan.pdf"
+                  download
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-emerald-700 dark:text-emerald-300 border border-emerald-400/40 bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-all duration-300 hover:scale-105"
+                >
+                  <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+                  Download CV
                 </a>
               </div>
 
@@ -220,8 +246,8 @@ export default function HomePage() {
               <div className="grid grid-cols-3 gap-4 pt-3 border-t border-violet-200/60 dark:border-white/5">
                 {[
                   { val: '3+', label: t.hero.stats.projects },
-                  { val: '3.71', label: t.hero.stats.gpa },
-                  { val: '1+', label: t.hero.stats.exp },
+                  { val: '3.75', label: t.hero.stats.gpa },
+                  { val: '2+', label: t.hero.stats.exp },
                 ].map(({ val, label }) => (
                   <div key={label} className="text-center">
                     <p className="text-2xl font-black bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(135deg,#7c3aed,#4f46e5)' }}>{val}</p>
@@ -263,14 +289,14 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          PROJECTS
+          PROJECTS — min-h-screen
       ════════════════════════════════════════════════════════════ */}
-      <section id="projects" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section id="projects" className="relative min-h-screen w-full py-24 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 dark:hidden" style={{ background: 'radial-gradient(ellipse 60% 40% at 90% 10%, rgba(124,58,237,0.09) 0%, transparent 55%), linear-gradient(145deg,#f5f0ff 0%,#ffffff 50%,#f0ebff 100%)' }} />
         <div className="absolute inset-0 hidden dark:block" style={{ background: 'linear-gradient(135deg,#0D0D1A 0%,#0F0A1E 50%,#1a0a2e 100%)' }} />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-violet-400/25 to-transparent" />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="space-y-3 mb-14">
             <SectionBadge label={t.projects.badge} />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white">{t.projects.title}</h2>
@@ -310,20 +336,21 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          EXPERIENCE
+          EXPERIENCE — min-h-screen
       ════════════════════════════════════════════════════════════ */}
-      <section id="experience" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section id="experience" className="relative min-h-screen w-full py-24 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 dark:hidden" style={{ background: 'radial-gradient(ellipse 40% 30% at 20% 30%, rgba(109,40,217,0.07) 0%, transparent 60%), linear-gradient(180deg,#f8f5ff 0%,#ffffff 40%,#f2eeff 100%)' }} />
         <div className="absolute inset-0 hidden dark:block" style={{ background: 'radial-gradient(ellipse 40% 30% at 10% 30%, rgba(124,58,237,0.08) 0%, transparent 60%), linear-gradient(180deg,#080810 0%,#0D0A20 50%,#100D22 100%)' }} />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-violet-400/25 to-transparent" />
 
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="relative z-10 max-w-5xl mx-auto w-full">
           <div className="space-y-3 mb-14">
             <SectionBadge label={t.experience.badge} color="indigo" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white">{t.experience.title}</h2>
             <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl">{t.experience.subtitle}</p>
           </div>
 
+          {/* Timeline */}
           <div className="relative">
             <div className="absolute left-6 top-0 bottom-0 w-px hidden md:block" style={{ background: 'linear-gradient(180deg,#7c3aed,#4f46e5 60%,transparent 100%)' }} />
             <div className="space-y-8">
@@ -358,6 +385,36 @@ export default function HomePage() {
                   </div>
                 )
               })}
+
+              {/* Education node */}
+              <div className="relative md:pl-20 group">
+                <div className="absolute left-3.5 top-7 w-5 h-5 rounded-full hidden md:flex items-center justify-center transition-transform group-hover:scale-125" style={{ border: '2px solid #6366f1', background: 'rgba(99,102,241,0.12)' }}>
+                  <div className="w-2 h-2 rounded-full bg-indigo-500" />
+                </div>
+                <Card className="p-6 sm:p-8">
+                  <div className="flex flex-col sm:flex-row gap-5">
+                    <div className="shrink-0 space-y-2">
+                      <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg,rgba(99,102,241,0.15),rgba(79,70,229,0.15))', border: '1px solid rgba(99,102,241,0.25)' }}>
+                        <GraduationCap className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                      </div>
+                      <p className="text-sm text-indigo-600 dark:text-indigo-400 font-medium flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />Jul 2022 – Oct 2025</p>
+                      <p className="text-sm text-slate-500 flex items-center gap-1"><MapPin className="w-3.5 h-3.5" />Bali, Indonesia</p>
+                    </div>
+                    <div className="flex-1 space-y-3">
+                      <div>
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">D3 Informatics Management</h3>
+                        <p className="text-indigo-600 dark:text-indigo-400 font-semibold">Bali State Polytechnic</p>
+                      </div>
+                      <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Completed a D3 in Informatics Management with focus on web development, databases, and software engineering. Graduated with a GPA of 3.75 / 4.00.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {['Web Development', 'Database', 'System Analysis', 'GPA 3.75/4.00'].map(h => <Tag key={h} label={h} />)}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
             </div>
           </div>
 
@@ -367,7 +424,7 @@ export default function HomePage() {
               <Award className="w-6 h-6 text-violet-600 dark:text-violet-400" />
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{t.experience.certs}</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {certs.map((c, i) => (
                 <Card key={i} className="p-5">
                   <div className="flex items-start gap-4">
@@ -385,14 +442,14 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          SKILLS
+          SKILLS — min-h-screen
       ════════════════════════════════════════════════════════════ */}
-      <section id="skills" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section id="skills" className="relative min-h-screen w-full py-24 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 dark:hidden" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(124,58,237,0.07) 0%, transparent 60%), linear-gradient(135deg,#f3f0ff 0%,#faf8ff 100%)' }} />
         <div className="absolute inset-0 hidden dark:block" style={{ background: 'radial-gradient(circle at 25% 25%, rgba(124,58,237,0.12) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(79,70,229,0.1) 0%, transparent 50%), #0A0A18' }} />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-violet-400/25 to-transparent" />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="space-y-3 mb-14">
             <SectionBadge label={t.skills.badge} />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white">{t.skills.title}</h2>
@@ -421,14 +478,14 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          BLOG
+          BLOG — min-h-screen
       ════════════════════════════════════════════════════════════ */}
-      <section id="blog" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section id="blog" className="relative min-h-screen w-full py-24 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 dark:hidden" style={{ background: 'radial-gradient(ellipse 80% 30% at 50% 0%, rgba(110,231,183,0.1) 0%, rgba(167,139,250,0.07) 40%, transparent 70%), linear-gradient(180deg,#f0fdf9 0%,#fdf9ff 30%,#ffffff 100%)' }} />
         <div className="absolute inset-0 hidden dark:block" style={{ background: 'linear-gradient(180deg, rgba(124,58,237,0.18) 0%, rgba(79,70,229,0.07) 15%, transparent 40%), #090912' }} />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-violet-400/25 to-transparent" />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="space-y-3 mb-14">
             <SectionBadge label={t.blog.badge} color="emerald" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white">{t.blog.title}</h2>
@@ -451,9 +508,9 @@ export default function HomePage() {
                   <p className="text-xs text-slate-500 flex items-center gap-1"><Calendar className="w-3 h-3" />{post.date}</p>
                   <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-violet-700 dark:group-hover:text-violet-300 transition-colors text-sm sm:text-base leading-snug">{post.title}</h3>
                   <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">{post.excerpt}</p>
-                  <div className="flex flex-wrap gap-1.5">{post.tags.map(t => <Tag key={t} label={t} />)}</div>
+                  <div className="flex flex-wrap gap-1.5">{post.tags.map(tg => <Tag key={tg} label={tg} />)}</div>
                   <div className="flex items-center gap-1.5 text-sm font-semibold text-violet-600 dark:text-violet-400 group-hover:text-violet-700 dark:group-hover:text-violet-300 transition-colors">
-                    {t.read} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    Read more <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </a>
@@ -462,7 +519,7 @@ export default function HomePage() {
 
           <Divider />
 
-          {/* T.I.L sub-section */}
+          {/* T.I.L */}
           <div className="pt-16">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-11 h-11 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg,rgba(245,158,11,0.15),rgba(124,58,237,0.15))', border: '1px solid rgba(245,158,11,0.25)' }}>
@@ -499,14 +556,14 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          STUDIO / ABOUT
+          STUDIO / ABOUT — min-h-screen
       ════════════════════════════════════════════════════════════ */}
-      <section id="studio" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section id="studio" className="relative min-h-screen w-full py-24 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 dark:hidden" style={{ background: 'radial-gradient(ellipse 50% 60% at 30% 50%, rgba(124,58,237,0.08) 0%, transparent 60%), linear-gradient(135deg,#f5f2ff 0%,#ffffff 60%,#f0ebff 100%)' }} />
         <div className="absolute inset-0 hidden dark:block" style={{ background: 'radial-gradient(ellipse 60% 70% at 30% 50%, rgba(124,58,237,0.15) 0%, transparent 60%), #07070F' }} />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-violet-400/25 to-transparent" />
 
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="relative z-10 max-w-5xl mx-auto w-full">
           <div className="space-y-3 mb-14">
             <SectionBadge label={t.studio.badge} />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white">{t.studio.title}</h2>
@@ -520,7 +577,7 @@ export default function HomePage() {
                   <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shrink-0" style={{ background: 'linear-gradient(135deg,rgba(124,58,237,0.15),rgba(79,70,229,0.15))', border: '1px solid rgba(124,58,237,0.25)' }}>👨‍💻</div>
                   <div>
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white">I Dewa Kadek Dana Gunawan</h3>
-                    <p className="text-violet-600 dark:text-violet-400 text-sm font-medium">Full-Stack AI Web Developer</p>
+                    <p className="text-violet-600 dark:text-violet-400 text-sm font-medium">Full-Stack Web Developer</p>
                     <p className="text-slate-500 text-xs">Bali, Indonesia 🇮🇩</p>
                   </div>
                 </div>
@@ -536,7 +593,7 @@ export default function HomePage() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {[
                     { label: t.studio.learning, value: 'AI Agents & LLMs' },
-                    { label: t.studio.building, value: 'This Portfolio 🚀' },
+                    { label: t.studio.building, value: 'HotelDomestik 🏨' },
                     { label: t.studio.listening, value: 'Lo-fi Hip Hop 🎵' },
                   ].map(({ label, value }) => (
                     <div key={label} className="p-3 rounded-xl bg-violet-50 dark:bg-violet-500/8 border border-violet-100 dark:border-violet-500/15">
@@ -552,16 +609,19 @@ export default function HomePage() {
               <Card className="p-5">
                 <h4 className="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2"><Code2 className="w-4 h-4 text-violet-500" />{t.studio.stack}</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Laravel', 'Vercel'].map(s => <Tag key={s} label={s} />)}
+                  {['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Laravel', 'Supabase', 'Vercel'].map(s => <Tag key={s} label={s} />)}
                 </div>
               </Card>
               <Card className="p-5">
                 <h4 className="font-bold text-slate-900 dark:text-white mb-4">✨ {t.studio.funFacts}</h4>
                 <ul className="space-y-2">
-                  {(lang === 'en'
-                    ? ['Based in beautiful Bali, Indonesia 🏝️', 'GPA 3.71/4.00 at Politeknik Negeri Bali', 'Passionate about AI-assisted development', 'Former social org leader (Aksosma 2022)', 'Coffee-fueled coder ☕']
-                    : ['Tinggal di Bali yang indah 🏝️', 'IPK 3.71/4.00 di Politeknik Negeri Bali', 'Passionate tentang pengembangan AI', 'Mantan ketua Aksosma 2022', 'Developer bertenaga kopi ☕']
-                  ).map((f, i) => (
+                  {[
+                    'Based in beautiful Bali, Indonesia 🏝️',
+                    'GPA 3.75 / 4.00 — Bali State Polytechnic',
+                    'Passionate about AI-assisted development',
+                    'Former community volunteer (Aksosma 2022)',
+                    'Coffee-fueled coder ☕',
+                  ].map((f, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
                       <span className="text-violet-400 mt-0.5 shrink-0">→</span>{f}
                     </li>
@@ -574,14 +634,14 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          CONTACT
+          CONTACT — min-h-screen
       ════════════════════════════════════════════════════════════ */}
-      <section id="contact" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section id="contact" className="relative min-h-screen w-full py-24 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 dark:hidden" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 100%, rgba(124,58,237,0.1) 0%, transparent 65%), linear-gradient(180deg,#ffffff 0%,#f5f1ff 60%,#ede9fe 100%)' }} />
         <div className="absolute inset-0 hidden dark:block" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 100%, rgba(124,58,237,0.15) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 20%, rgba(79,70,229,0.1) 0%, transparent 60%), #0A0A1A' }} />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-violet-400/25 to-transparent" />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="space-y-3 mb-14">
             <SectionBadge label={t.contact.badge} />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white">{t.contact.title}</h2>
@@ -592,16 +652,17 @@ export default function HomePage() {
             {/* Info */}
             <div className="lg:col-span-2 space-y-4">
               {[
-                { emoji: '📧', label: t.contact.email, value: 'dewakadekdana@gmail.com', href: 'mailto:dewakadekdana@gmail.com' },
+                { emoji: '📧', label: 'Email', value: 'dewakadekdana@gmail.com', href: 'mailto:dewakadekdana@gmail.com' },
                 { emoji: '📱', label: 'Phone', value: '+62 815-2909-7310', href: 'tel:+6281529097310' },
-                { emoji: '📍', label: 'Location', value: t.contact.location, href: '#' },
+                { emoji: '📍', label: 'Location', value: 'Bali, Indonesia', href: '#' },
+                { emoji: '🌐', label: 'Portfolio', value: 'danagunawan-portofolio.vercel.app', href: 'https://danagunawan-portofolio.vercel.app/' },
               ].map(({ emoji, label, value, href }) => (
-                <a key={label} href={href}
+                <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
                   className="group flex items-center gap-4 rounded-2xl p-5 border border-violet-100 dark:border-white/5 hover:border-violet-300 dark:hover:border-violet-500/25 bg-white dark:bg-white/[0.02] transition-all duration-300 hover:shadow-[0_0_20px_rgba(124,58,237,0.08)] hover:-translate-y-0.5">
                   <div className="shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center text-xl" style={{ background: 'linear-gradient(135deg,rgba(124,58,237,0.12),rgba(79,70,229,0.12))', border: '1px solid rgba(124,58,237,0.2)' }}>{emoji}</div>
                   <div>
                     <p className="text-xs text-slate-500 font-mono uppercase tracking-wider">{label}</p>
-                    <p className="font-semibold text-slate-900 dark:text-white text-sm group-hover:text-violet-700 dark:group-hover:text-violet-300 transition-colors">{value}</p>
+                    <p className="font-semibold text-slate-900 dark:text-white text-sm group-hover:text-violet-700 dark:group-hover:text-violet-300 transition-colors break-all">{value}</p>
                   </div>
                 </a>
               ))}
