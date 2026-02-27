@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { ThemeProvider } from 'next-themes'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footers'
 import { LangProvider } from '@/components/i18n'
-import { ThemeProvider } from '@/components/theme-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,9 +15,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'I Dewa Kadek Dana Gunawan' }],
   creator: 'I Dewa Kadek Dana Gunawan',
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-    ],
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
     apple: '/favicon.svg',
   },
   openGraph: {
@@ -32,11 +30,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Inline SVG favicon — gunawanDev logo (Code2 style) */}
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body className={`${inter.className} bg-white dark:bg-[#07070f] text-slate-900 dark:text-white antialiased`}>
-        <ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <LangProvider>
             <Navbar />
             <main>{children}</main>

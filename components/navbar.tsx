@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X, Code2, Sun, Moon } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import ReactCountryFlag from 'react-country-flag'
 import { useLang, Lang } from './i18n'
-import { useTheme } from './theme-provider'
 
-const FLAG: Record<Lang, string> = { en: '🇬🇧', id: '🇮🇩' }
-const LABEL: Record<Lang, string> = { en: 'EN', id: 'ID' }
+// Country code for SVG flag (ISO 3166-1 alpha-2)
+const FLAG_CODE: Record<Lang, string> = { en: 'GB', id: 'ID' }
+const LABEL: Record<Lang, string>     = { en: 'EN', id: 'ID' }
 
 const NAV_SECTIONS = [
   { id: 'projects' },
@@ -22,12 +24,16 @@ const NAV_SECTIONS = [
 
 export function Navbar() {
   const { t, lang, setLang } = useLang()
-  const { theme, toggleTheme } = useTheme()
-  const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const { theme, setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted]           = useState(false)
+  const [open, setOpen]                 = useState(false)
+  const [scrolled, setScrolled]         = useState(false)
   const [activeSection, setActiveSection] = useState('')
-  const pathname = usePathname()
+  const pathname    = usePathname()
   const isDetailPage = pathname.startsWith('/projects/')
+
+  // Avoid hydration mismatch for theme icon
+  useEffect(() => setMounted(true), [])
 
   useEffect(() => {
     const onScroll = () => {
@@ -54,8 +60,8 @@ export function Navbar() {
   }
 
   const navItems = NAV_SECTIONS.map(s => ({
-    id: s.id,
-    href: `/#${s.id}`,
+    id:    s.id,
+    href:  `/#${s.id}`,
     label: navLabelMap[s.id] ?? s.id,
   }))
 
@@ -66,8 +72,36 @@ export function Navbar() {
     if (!isDetailPage && href.startsWith('/#')) {
       const id = href.replace('/#', '')
       const el = document.getElementById(id)
-      if (el) { el.scrollIntoView({ behavior: 'smooth' }); return }
+      if (el) { el.scrollIntoView({ behavior: 'smooth' }) }
     }
+  }
+
+  const isDark = resolvedTheme === 'dark'
+  const toggleTheme = () => setTheme(isDark ? 'light' : 'dark')
+
+  // ── Flag pill component ─────────────────────────────────────
+  function FlagPill({ l, onClick }: { l: Lang; onClick: () => void }) {
+    const active = lang === l
+    return (
+      <button
+        onClick={onClick}
+        aria-label={l === 'en' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}
+        className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold tracking-widest uppercase transition-all duration-200 ${
+          active
+            ? 'bg-violet-600 dark:bg-violet-500 text-white'
+            : 'text-slate-500 dark:text-slate-400 hover:text-violet-700 dark:hover:text-violet-300 hover:bg-violet-100 dark:hover:bg-violet-500/20'
+        }`}
+      >
+        {/* SVG flag via react-country-flag — works on all OS/browsers */}
+        <ReactCountryFlag
+          countryCode={FLAG_CODE[l]}
+          svg
+          style={{ width: '1.2em', height: '1.2em', borderRadius: '2px' }}
+          aria-hidden="true"
+        />
+        <span>{LABEL[l]}</span>
+      </button>
+    )
   }
 
   return (
@@ -91,7 +125,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* ── Desktop nav links ── */}
+        {/* ── Desktop nav ── */}
         <div className="hidden lg:flex items-center gap-1">
           {navItems.map(({ id, href, label }) => (
             <Link
@@ -115,40 +149,25 @@ export function Navbar() {
         {/* ── Right controls ── */}
         <div className="flex items-center gap-2">
 
-          {/* ── Dark / Light toggle ── */}
-          <button
-            onClick={toggleTheme}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            className="w-9 h-9 rounded-xl flex items-center justify-center border border-violet-200 dark:border-violet-500/20 bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 hover:border-violet-400 dark:hover:border-violet-400/40 hover:bg-violet-100 dark:hover:bg-violet-500/20 transition-all hover:scale-105 active:scale-95"
-          >
-            {theme === 'dark'
-              ? <Sun className="w-4 h-4" />
-              : <Moon className="w-4 h-4" />}
-          </button>
+          {/* Theme toggle */}
+          {mounted && (
+            <button
+              onClick={toggleTheme}
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="w-9 h-9 rounded-xl flex items-center justify-center border border-violet-200 dark:border-violet-500/20 bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 hover:border-violet-400 dark:hover:border-violet-400/40 hover:bg-violet-100 dark:hover:bg-violet-500/20 transition-all hover:scale-105 active:scale-95"
+            >
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+          )}
 
-          {/* ── Language toggle — shows active lang highlighted ── */}
+          {/* Language toggle — dual pill with SVG flags */}
           <div className="flex items-center rounded-xl border border-violet-200 dark:border-violet-500/20 bg-violet-50 dark:bg-violet-500/10 overflow-hidden">
-            {(['en', 'id'] as Lang[]).map((l) => {
-              const active = lang === l
-              return (
-                <button
-                  key={l}
-                  onClick={() => setLang(l)}
-                  className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold tracking-widest uppercase transition-all duration-200 ${
-                    active
-                      ? 'bg-violet-600 dark:bg-violet-500 text-white shadow-inner'
-                      : 'text-slate-500 dark:text-slate-400 hover:text-violet-700 dark:hover:text-violet-300 hover:bg-violet-100 dark:hover:bg-violet-500/20'
-                  }`}
-                  aria-label={l === 'en' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}
-                >
-                  <span className="text-base leading-none select-none">{FLAG[l]}</span>
-                  <span>{LABEL[l]}</span>
-                </button>
-              )
-            })}
+            <FlagPill l="en" onClick={() => setLang('en')} />
+            <div className="w-px h-5 bg-violet-200 dark:bg-violet-500/30" />
+            <FlagPill l="id" onClick={() => setLang('id')} />
           </div>
 
-          {/* ── Mobile hamburger ── */}
+          {/* Mobile hamburger */}
           <button
             onClick={() => setOpen(!open)}
             className="lg:hidden w-9 h-9 rounded-xl flex items-center justify-center border border-violet-200 dark:border-violet-500/20 bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 hover:border-violet-400 dark:hover:border-violet-400/40 transition-all"
@@ -182,15 +201,15 @@ export function Navbar() {
 
           {/* Mobile theme + language */}
           <div className="mt-3 pt-3 border-t border-violet-100 dark:border-violet-500/10 flex items-center gap-2 px-1">
-            {/* Theme button */}
-            <button
-              onClick={() => { toggleTheme(); setOpen(false) }}
-              className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-violet-200 dark:border-violet-500/20 text-slate-600 dark:text-slate-400 hover:bg-violet-50 dark:hover:bg-violet-500/10 text-sm font-medium transition-all"
-            >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-            </button>
-            {/* Lang buttons */}
+            {mounted && (
+              <button
+                onClick={() => { toggleTheme(); setOpen(false) }}
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-violet-200 dark:border-violet-500/20 text-slate-600 dark:text-slate-400 hover:bg-violet-50 dark:hover:bg-violet-500/10 text-sm font-medium transition-all"
+              >
+                {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                {isDark ? 'Light Mode' : 'Dark Mode'}
+              </button>
+            )}
             <div className="flex gap-1 ml-auto">
               {(['en', 'id'] as Lang[]).map((l) => {
                 const active = lang === l
@@ -204,7 +223,12 @@ export function Navbar() {
                         : 'border border-violet-200 dark:border-violet-500/20 text-slate-600 dark:text-slate-400 hover:bg-violet-50 dark:hover:bg-violet-500/10'
                     }`}
                   >
-                    <span className="text-base leading-none">{FLAG[l]}</span>
+                    <ReactCountryFlag
+                      countryCode={FLAG_CODE[l]}
+                      svg
+                      style={{ width: '1.2em', height: '1.2em', borderRadius: '2px' }}
+                      aria-hidden="true"
+                    />
                     <span>{LABEL[l]}</span>
                   </button>
                 )

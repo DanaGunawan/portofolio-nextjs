@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Tambahkan ini untuk dark mode berbasis class */
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   --font-geist: 'Geist';
   --font-geist-mono: 'Geist Mono';
