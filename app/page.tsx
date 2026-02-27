@@ -17,7 +17,7 @@ export default function HomePage() {
       <ExperienceSection />
       <EducationSection />
       <SkillsSection />
-      <BlogSection />
+      {/* <BlogSection /> */}
       <StudioSection />
       <ContactSection />
     </>

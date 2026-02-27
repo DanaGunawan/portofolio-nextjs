@@ -59,7 +59,7 @@ export function ContactSection() {
               { emoji: '📧', label: 'Email', value: 'dewakadekdana@gmail.com', href: 'mailto:dewakadekdana@gmail.com' },
               { emoji: '📱', label: 'Phone', value: '+62 815-2909-7310', href: 'tel:+6281529097310' },
               { emoji: '📍', label: 'Location', value: 'Bali, Indonesia', href: '#' },
-              { emoji: '🌐', label: 'Portfolio', value: 'danagunawan-portofolio.vercel.app', href: 'https://danagunawan-portofolio.vercel.app/' },
+              { emoji: '🌐', label: 'Portfolio', value: 'danagunawanpersonal.vercel.app', href: 'https://danagunawanpersonal.vercel.app/' },
             ].map(({ emoji, label, value, href }) => (
               <a key={label} href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
@@ -77,8 +77,8 @@ export function ContactSection() {
               <p className="text-xs text-slate-500 dark:text-slate-400 font-mono uppercase tracking-wider mb-3">{t.contact.findMe}</p>
               <div className="flex gap-2">
                 {[
-                  { Icon: Github, href: 'https://github.com', label: 'GitHub' },
-                  { Icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+                  { Icon: Github, href: 'https://github.com/DanaGunawan', label: 'GitHub' },
+                  { Icon: Linkedin, href: 'https://linkedin.com/in/danagunawan', label: 'LinkedIn' },
                   { Icon: Mail, href: 'mailto:dewakadekdana@gmail.com', label: 'Email' },
                 ].map(({ Icon, href, label }) => (
                   <a key={label} href={href}

@@ -14,7 +14,7 @@ const projects = [
     descId: 'Sistem informasi berbasis GIS untuk pendataan penghuni kos di Kelurahan Panjer dengan manajemen data, laporan, statistik, ekspor PDF, dan peta interaktif Leaflet.',
     tags: ['Laravel', 'TailwindCSS', 'Bootstrap', 'Leaflet'],
     link: 'https://sigkoskelurahanpanjer.web.id/',
-    image: 'https://picsum.photos/seed/sigkos/800/450',
+    image: 'projects/sigkos/sigkos.png',
   },
   {
     slug: 'zonaCPNS',
@@ -23,7 +23,7 @@ const projects = [
     descId: 'Platform tryout online untuk persiapan CPNS dengan 6 paket tryout, timer otomatis, evaluasi hasil real-time, penyimpanan Supabase, dan integrasi pembayaran Midtrans.',
     tags: ['Next.js 15', 'TailwindCSS', 'Supabase', 'Midtrans'],
     link: 'https://zonacpns.com',
-    image: 'https://picsum.photos/seed/cpns/800/450',
+    image: 'projects/zonacpns/zonacpns.png',
   },
   {
     slug: 'rajaprana',
@@ -32,7 +32,7 @@ const projects = [
     descId: 'Backend booking engine untuk reservasi spa dan aktivitas. Dashboard manajemen, RESTful API, laporan penjualan Excel/PDF otomatis, notifikasi email transaksi, dan integrasi Jokul payment.',
     tags: ['Laravel', 'TailwindCSS', 'Fullcalendar', 'Jokul'],
     link: 'https://rajaprana.com',
-    image: 'https://picsum.photos/seed/rajaprana/800/450',
+    image: 'projects/rajaprana/rajaprana.png',
   },
 ]
 
@@ -144,7 +144,7 @@ export function ProjectsSection() {
                   ))}
                 </div>
                 <Link
-                  href={`/projects/${p.slug}`}
+                  href={`${p.link}`}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold
                     text-violet-700 dark:text-violet-400
                     hover:text-violet-800 dark:hover:text-violet-300

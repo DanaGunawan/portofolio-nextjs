@@ -1,6 +1,6 @@
 'use client'
 
-import { Github, Linkedin, Twitter, Mail, Code2 } from 'lucide-react'
+import { Github, Linkedin, Instagram, Mail, Code2 } from 'lucide-react'
 import Link from 'next/link'
 import { useLang } from '@/components/i18n'
 
@@ -19,9 +19,9 @@ export function Footer() {
   ]
 
   const social = [
-    { icon: Github,   href: 'https://github.com',          label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com',         label: 'LinkedIn' },
-    { icon: Twitter,  href: 'https://twitter.com',          label: 'Twitter' },
+    { icon: Github,   href: 'https://github.com/DanaGunawan',          label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/danagunawan',         label: 'LinkedIn' },
+    { icon: Instagram,  href: 'https://instagram.com/dewakadek36',          label: 'Instagram' },
     { icon: Mail,     href: 'mailto:dewakadekdana@gmail.com', label: 'Email' },
   ]
 
@@ -118,7 +118,7 @@ export function Footer() {
                 { emoji: '📧', value: 'dewakadekdana@gmail.com', href: 'mailto:dewakadekdana@gmail.com', external: false },
                 { emoji: '📱', value: '+62 815-2909-7310', href: 'tel:+6281529097310', external: false },
                 { emoji: '📍', value: 'Bali, Indonesia', href: null, external: false },
-                { emoji: '🌐', value: 'Portfolio', href: 'https://danagunawan-portofolio.vercel.app/', external: true },
+                { emoji: '🌐', value: 'Portfolio', href: 'https://danagunawanpersonal.vercel.app/', external: true },
               ].map(({ emoji, value, href, external }) =>
                 href ? (
                   <a key={value} href={href}

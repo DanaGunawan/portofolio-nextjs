@@ -17,7 +17,7 @@ const NAV_SECTIONS = [
   { id: 'experience' },
   { id: 'education' },
   { id: 'skills' },
-  { id: 'blog' },
+  // { id: 'blog' },
   { id: 'studio' },
   { id: 'contact' },
 ]
