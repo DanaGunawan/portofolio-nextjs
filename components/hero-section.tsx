@@ -57,7 +57,7 @@ export function HeroSection() {
               <a href="#projects" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-violet-700 dark:text-violet-300 border border-violet-400/40 bg-violet-50 dark:bg-violet-500/10 hover:bg-violet-100 dark:hover:bg-violet-500/20 transition-all duration-300 hover:scale-105">
                 {t.hero.cta2}
               </a>
-              <a href="CV-Gunawan.pdf" download className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-emerald-700 dark:text-emerald-300 border border-emerald-400/40 bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-all duration-300 hover:scale-105">
+              <a href="CV-DanaGunawan.pdf" download className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-emerald-700 dark:text-emerald-300 border border-emerald-400/40 bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-all duration-300 hover:scale-105">
                 <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
                 Download CV
               </a>
