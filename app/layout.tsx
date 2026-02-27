@@ -1,62 +1,46 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
-import { ThemeProvider } from 'next-themes'
-import { LangProvider } from '@/components/i18n'
-import { Navbar } from '@/components/navbar'
-import { Footer } from '@/components/footer'
-import { BackToTop } from '@/components/back-to-top'
-import { ScrollProgress } from '@/components/scroll-progress'
+import { Inter } from 'next/font/google'
 import './globals.css'
+import { Navbar } from '@/components/navbar'
+import { Footer } from '@/components/footers'
+import { LangProvider } from '@/components/i18n'
+import { ThemeProvider } from '@/components/theme-provider'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://danagunawan-portofolio.vercel.app'),
-  title: {
-    default: 'gunawanDev — Full-Stack AI Web Developer',
-    template: '%s | gunawanDev',
-  },
-  description:
-    'Portfolio of I Dewa Kadek Dana Gunawan — Full-Stack AI Web Developer from Bali, Indonesia. Building scalable, fast, and optimized web apps with React, Next.js, Laravel, and AI tools.',
-  keywords: [
-    'Full-Stack Developer', 'AI Web Developer', 'Next.js', 'React', 'Laravel',
-    'TypeScript', 'Bali Developer', 'Indonesia Developer', 'gunawanDev',
-  ],
-  authors: [{ name: 'I Dewa Kadek Dana Gunawan', url: 'https://danagunawan-portofolio.vercel.app' }],
+  title: 'gunawanDev — Full-Stack Web Developer',
+  description: 'Portfolio of I Dewa Kadek Dana Gunawan — Full-Stack Web Developer based in Bali, Indonesia. Specialising in Laravel, Next.js, and AI-assisted development.',
+  keywords: ['gunawanDev', 'Full-Stack Developer', 'Laravel', 'Next.js', 'Bali', 'Indonesia', 'Web Developer'],
+  authors: [{ name: 'I Dewa Kadek Dana Gunawan' }],
   creator: 'I Dewa Kadek Dana Gunawan',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/favicon.svg',
+  },
   openGraph: {
+    title: 'gunawanDev — Full-Stack Web Developer',
+    description: 'Portfolio of I Dewa Kadek Dana Gunawan — Full-Stack Web Developer based in Bali, Indonesia.',
     type: 'website',
     locale: 'en_US',
-    url: 'https://danagunawan-portofolio.vercel.app',
-    title: 'gunawanDev — Full-Stack AI Web Developer',
-    description: 'Portfolio of I Dewa Kadek Dana Gunawan — Full-Stack AI Web Developer from Bali, Indonesia.',
-    siteName: 'gunawanDev',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'gunawanDev — Full-Stack AI Web Developer',
-    description: 'Portfolio of I Dewa Kadek Dana Gunawan — Full-Stack AI Web Developer from Bali, Indonesia.',
-    creator: '@gunawandev',
-  },
-  robots: { index: true, follow: true },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
-    >
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Inline SVG favicon — gunawanDev logo (Code2 style) */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      </head>
+      <body className={`${inter.className} bg-white dark:bg-[#07070f] text-slate-900 dark:text-white antialiased`}>
+        <ThemeProvider>
           <LangProvider>
-            <ScrollProgress />
             <Navbar />
-            <main className="min-h-screen">
-              {children}
-            </main>
+            <main>{children}</main>
             <Footer />
-            <BackToTop />
           </LangProvider>
         </ThemeProvider>
       </body>
